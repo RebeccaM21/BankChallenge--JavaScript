@@ -1,0 +1,26 @@
+{
+  "name": "bank-challengeattempt",
+  "version": "1.0.0",
+  "description": "This challenge helps you practice your OO design skills.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RebeccaM21/bank-challengeattempt.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RebeccaM21/bank-challengeattempt/issues"
+  },
+  "homepage": "https://github.com/RebeccaM21/bank-challengeattempt#readme",
+  "devDependencies": {
+    "jasmine": "^4.2.1"
+  }
+}
