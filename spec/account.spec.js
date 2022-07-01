@@ -8,42 +8,56 @@
 //EXAMPLE
 const { PersonalAccount } = require("../src/account");
 
-let testBalance = {
-    add: (amount) => { amount },
-    total: () => { },
-    withdraw: (amount) => { -amount },
-};
+const testBalance = { 
+    add: () => { }, 
+    getTotal: () => { }, 
+    withdraw: () => { }, 
+}
 
-let testAccount = new PersonalAccount(testBalance);
+let testAmount = 100; 
+
+let addSpy, totalSpy, withdrawSpy, testAccount; 
+
+ beforeEach(() => {
+            testAccount = new PersonalAccount(testBalance);
+            addSpy = spyOn(testBalance, `add`);
+            totalSpy = spyOn(testBalance, `getTotal`);
+            withdrawSpy = spyOn(testBalance, `withdraw`);
+});
    
+afterEach(() => {
+            testWallet = null;
+            addSpy = null;
+            totalSpy = null;
+            withdrawSpy = null; 
+});
+        
 
 describe(`Account Class Tests`, () => {
 
     describe(`Account Class Call Tests`, () => {
     
         it(`should call the balance object's add method`, () => {
-            const addSpy = spyOn(testBalance, `add`);
             
-            testAccount.add(100);
+            testAccount.add(testAmount);
 
             expect(addSpy).toHaveBeenCalled();
+            
 
         })
     
-        it(`should call the balance object's total method`, () => {
-            const addSpy = spyOn(testBalance, `add`);
-            const newSpy = spyOn(testBalance, `total`);
-            testAccount.add(100);
+        it(`should call the balance object's getTotal method`, () => {
+            testAccount.add(testAmount);
 
-            expect(addSpy).toHaveBeenCalledBefore(newSpy);
+            expect(addSpy).toHaveBeenCalledBefore(totalSpy);
 
         })
     
         it(`should call the balance object's withdrawal method`, () => {
-            const withdrawSpy = spyOn(testBalance, `withdraw`);
-            testAccount.withdraw(100);
+            testAccount.withdraw(testAmount);
 
             expect(withdrawSpy).toHaveBeenCalled();
+            expect(withdrawSpy).toHaveBeenCalledBefore(totalSpy);
 
         })
 
@@ -51,19 +65,24 @@ describe(`Account Class Tests`, () => {
 
     describe(`Account Class Functionality Tests`, () => {
 
-        it(`should allow the cash balance to be set for the specific account, and returned`, () => {
+        xit(`should allow for the default balance of the class to be set when declaring new Account`, () => {
 
-            const setBalanceSpy = spyOn(testAccount, `setCashBalance`); 
-            const getBalanceSpy = spyOn(testAccount, `getCashBalance`); 
+            const setBalanceSpy = spyOn(testBalance); 
 
-            testAccount.setCashBalance(1000);
-            testAccount.getCashBalance();
-
-
-            expect(setBalanceSpy).toHaveBeenCalledBefore(getBalanceSpy);
-            expect(getBalanceSpy).toEqual(1000);
-
+            let newTestAccount = new PersonalAccount(testBalance(1000)); 
+    
+            expect(setBalanceSpy).toHaveBeenCalled();
+            expect(newTestAccount.total).toEqual(1000)
         })
+
+        it(`should allow to see the cash balance when calling getTotal`, () => {
+            testAccount.add(testAmount); 
+            console.log(testAccount.getTotal()); 
+    
+            expect(testAccount.getTotal()).toEqual(1000);
+        })
+
+        
 
     })
 })

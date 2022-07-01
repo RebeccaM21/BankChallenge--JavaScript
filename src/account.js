@@ -1,35 +1,35 @@
 class PersonalAccount {
     #cashBalance;
+    #transactionList; 
     
     constructor(balanceObject) {
         this.#cashBalance = balanceObject;
+        this.#transactionList = []; 
     }
     
         add(amount) { 
             this.#cashBalance.add(amount);
-            return this.#cashBalance.total();
+            return this.#cashBalance.getTotal();
         }
     
          withdraw(amount) {
-        this.#cashBalance.withdraw(amount)
-        return this.#cashBalance.total();
+            this.#cashBalance.withdraw(amount)
+            return this.#cashBalance.getTotal();
     } 
-
-
-    setCashBalance(cashBalance) { 
-        this.#cashBalance = cashBalance; 
-        return this.#cashBalance;
+    
+    getTotal() { 
+            return this.#cashBalance.getTotal();
     }
 
-    getCashBalance() { 
-        return this.#cashBalance; 
-        }
+    getTransactions() { 
+            return this.#transactionList;
+    }
+    
+    printStatement() { 
+        
+    }
     
 }
     
-let personal1 = new PersonalAccount()
-
-personal1.setCashBalance(1000); 
-console.log(personal1.getCashBalance()); 
 
 module.exports = { PersonalAccount }; 
