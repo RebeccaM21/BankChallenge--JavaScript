@@ -1,35 +1,37 @@
 class PersonalAccount {
     #cashBalance;
-    #transactionList; 
-    
-    constructor(balanceObject) {
-        this.#cashBalance = balanceObject;
-        this.#transactionList = []; 
-    }
-    
-        add(amount) { 
-            this.#cashBalance.add(amount);
-            return this.#cashBalance.getTotal();
-        }
-    
-         withdraw(amount) {
-            this.#cashBalance.withdraw(amount)
-            return this.#cashBalance.getTotal();
-    } 
-    
-    getTotal() { 
-            return this.#cashBalance.getTotal();
-    }
+    #transactionList;
 
-    getTransactions() { 
-            return this.#transactionList;
+    constructor(balanceObject, transactionObject) {
+        this.#cashBalance = balanceObject;
+        this.#transactionList = transactionObject;
     }
     
-    printStatement() { 
-        
+    add(amount) {
+        this.#cashBalance.add(amount);
+        this.#transactionList.add(amount);
+        return this.#cashBalance.getTotal();
     }
     
-}
+    withdraw(amount) {
+        this.#cashBalance.withdraw(amount)
+        let negativeWithdrawal = -Math.abs(amount);
+        this.#transactionList.add(negativeWithdrawal);
+        return this.#cashBalance.getTotal();
+    }
+    
+    getTotal() {
+        return this.#cashBalance.getTotal();
+    }
+    
+    
+    printStatement() {
+        console.log(this.#transactionList.transactionStatement());
+        return this.#transactionList.printStatement();
+    }
+    
+    
+    } 
     
 
 module.exports = { PersonalAccount }; 

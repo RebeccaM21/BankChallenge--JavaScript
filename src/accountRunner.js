@@ -1,64 +1,54 @@
 const { PersonalAccount } = require("../src/account"); 
 const { PrivateBalance } = require("../src/balance"); 
+const { Transactions } = require("../src/Transactions"); 
 
-const FirstAccount = new PersonalAccount(new PrivateBalance()); 
-
-let newBalance = new PrivateBalance(500); 
-console.log(newBalance.getTotal()); 
-newBalance.add(100);
-console.log(newBalance.getTotal()); 
-
-let newMoney = new PrivateBalance(500); 
-console.log(newMoney.getTotal()); 
-newMoney.add(900);
-console.log(newMoney.getTotal());
-
-
-console.log("----- Checking Account -----");
-FirstAccount.add(1000); 
-console.log(FirstAccount.getTotal()); 
+const FirstAccount = new PersonalAccount(new PrivateBalance(), new Transactions()); 
 
 
 
 
 
-const firstDate = new Date(2012, 01, 10)
-const date1 = firstDate.getDate()
-const month1 = firstDate.getMonth()
-const year1 = firstDate.getFullYear()
+// const secondDate = new Date(2012, 01, 13)
+// const date2 = secondDate.getDate()
+// const month2 = secondDate.getMonth()
+// const year2 = secondDate.getFullYear()
 
-console.log(`${date1}/${month1}/${year1}`);
-
-
-
-
-
-const secondDate = new Date(2012, 01, 13)
-const date2 = secondDate.getDate()
-const month2 = secondDate.getMonth()
-const year2 = secondDate.getFullYear()
-
-console.log(`${date2}/${month2}/${year2}`);
+// console.log(`${date2}/${month2}/${year2}`);
 
 
 
 
-const thirdDate = new Date(2012, 01, 14)
-const date3 = thirdDate.getDate()
-const month3 = thirdDate.getMonth()
-const year3 = thirdDate.getFullYear()
+// const thirdDate = new Date(2012, 01, 14)
+// const date3 = thirdDate.getDate()
+// const month3 = thirdDate.getMonth()
+// const year3 = thirdDate.getFullYear()
 
-console.log(`${date3}/${month3}/${year3}`);
+// console.log(`${date3}/${month3}/${year3}`);
 
-let array1 = ["apples", '||', "oranges", '||', "bananas"];
-console.log(array1);
+// let array1 = ["apples", '||', "oranges", '||', "bananas"];
+// console.log(array1);
 
-let practice = { 
-    Date: [date3 + '/' + month3 + '/' + year3], 
+
+
+// const statement = () => {
+//     return ("date || credit || debit || balance");
+// } 
+
+// const dates = () => { 
+//     console.log(`${date1}/0${month1}/${year1}`);
+//     // for loop through all the transactions with if statemetns
+//     // for (all of the array), console.log
+
     
-}
+//     console.log(`${date2}/0${month2}/${year2}`);
+//     console.log(`${date3}/0${month3}/${year3}`);
+// }
+// for (i = 0; i > 1; i++) { 
+//     console.log(`${date1}/0${month1}/${year1} ||      || deposit ||`);
+// }
+// console.log(dates());
 
-console.log(practice.key); 
+//  console.log(`${date1}/0${month1}/${year1} || ${credit} ||       || ${balance}`); 
 
 // console.log(`${day}, "/", ${month}, "/", ${year}`); 
 
@@ -66,3 +56,26 @@ console.log(practice.key);
 // Transaction.printStatement(date) shows all the dates specific to the date
 // Account.printStatement shows all the dates in a sequential row 
 
+// const printStatement {
+
+//     firstDeposit: 1000, 
+//     secondDeposit: 2000, 
+//     firstWithdrawal: -500, 
+// }; 
+
+const firstDeposit = 1000;  
+const secondDeposit = 2000; 
+const firstWithdrawal = 500; 
+
+
+FirstAccount.add(secondDeposit); 
+console.log(FirstAccount.getTotal());
+FirstAccount.withdraw(firstWithdrawal); 
+console.log(FirstAccount.getTotal());
+
+FirstAccount.printStatement(); 
+
+
+console.log(" NEW "); 
+
+console.log(FirstAccount.printStatement()); 
